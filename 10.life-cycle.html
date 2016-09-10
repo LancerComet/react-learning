@@ -1,0 +1,71 @@
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+<div id="app"></div>
+
+<script src="http://cdn.bootcss.com/react/15.3.1/react.js"></script>
+<script src="http://cdn.bootcss.com/react/15.3.1/react-dom.js"></script>
+<script src="http://cdn.bootcss.com/babel-standalone/6.15.0/babel.min.js"></script>
+
+<script type="text/babel">
+  const MyComponent = React.createClass({
+    getInitialState () {
+      return {
+        name: this.props.name
+      }
+    },
+
+    onChange (event) {
+      this.setState({ name: event.target.value })
+    },
+
+    componentWillMount () {
+      console.log('Component will mount.')
+    },
+
+    componentDidMount () {
+      console.log('Component did mount.')
+    },
+
+    componentWillUpdate (nextProp, nextState) {
+      console.log('Component will update.')
+      console.log('nextProp:', nextProp)
+      console.log('nextState:', nextState)
+    },
+
+    compoonentDidUpdate (prevProp, prevState) {
+      console.log('Component did update.')
+      console.log('prevProp', prevProp)
+      console.log('prevState', prevState)
+    },
+
+    componentWillUnmount () {
+      console.log('Component will unmount.')
+    },
+
+    render () {
+      return (
+        <div>
+          <h2>My Component</h2>
+          <div>
+            <p>Name: {this.state.name}</p>
+            <input type="text" value={this.state.name} onChange={this.onChange}/>
+          </div>
+        </div>
+      )
+    }
+  })
+
+  ReactDOM.render(
+    <MyComponent name="LancerComet"/>,
+    document.querySelector('#app')
+  )
+</script>
+
+</body>
+
+</html>

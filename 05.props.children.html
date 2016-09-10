@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+
+  <body>
+
+    <div id="app"></div>
+
+    <script src="http://cdn.bootcss.com/react/15.3.1/react.js"></script>
+    <script src="http://cdn.bootcss.com/react/15.3.1/react-dom.js"></script>
+    <script src="http://cdn.bootcss.com/babel-standalone/6.15.0/babel.min.js"></script>
+
+    <script type="text/x-markdown">
+    ```
+    # 组件中的 props.children
+
+    `props.children` 可以获取到在 render 时传入的 slot 从而做出其他处理逻辑.
+
+    此属性就是 WebComponent 的 slot 的 React 实现.
+    ```
+    </script>
+
+    <script type="text/babel">
+      const NodeList = React.createClass({
+        render () {
+          return (
+            <ol>
+            {
+              React.Children.map(this.props.children, child => <li>{child.props.text}</li>)
+            }  
+            </ol>
+          )
+        }
+      })
+
+      // 这个东西就是 Slot 机制.
+      ReactDOM.render(
+        <NodeList>
+          <span text="Hello"></span>
+          <span text="World"></span>          
+        </NodeList>,
+        document.querySelector('#app')
+      )
+    </script>
+
+  </body>
+
+</html>

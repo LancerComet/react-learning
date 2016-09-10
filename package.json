@@ -1,0 +1,12 @@
+{
+  "name": "react-learning",
+  "version": "0.1.0",
+  "description": "Learn Awesome React.",
+  "main": "index.js",
+  "keywords": ["React"],
+  "author": {
+    "name": "LancerComet",
+    "email": "chw644@hotmail.com"
+  },
+  "license": "MIT"
+}

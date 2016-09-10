@@ -1,0 +1,56 @@
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+<div id="app"></div>
+
+<script src="http://cdn.bootcss.com/react/15.3.1/react.js"></script>
+<script src="http://cdn.bootcss.com/react/15.3.1/react-dom.js"></script>
+<script src="http://cdn.bootcss.com/babel-standalone/6.15.0/babel.min.js"></script>
+
+<script type="text/babel">
+  const InputComponent = React.createClass({
+    getInitialState () {
+      return {
+        value: this.props.value || ''
+      }
+    },
+
+    onChange (event) {
+      const newVal = event.target.value
+      this.setState({ value: newVal })
+    },
+    
+    render () {
+      return (
+        <div>
+          <p>{this.props.label}: {this.state.value}</p>
+          <input type="text" value={this.state.value} onChange={this.onChange} />
+        </div>
+      )
+    }
+  })
+
+  const FormComponent = React.createClass({
+    render () {
+      return (
+        <div>
+          <InputComponent label="Name" value="LancerComet"/>
+          <InputComponent label="Location" value="Bilibili"/>
+        </div>
+      )
+    }
+  })
+
+  ReactDOM.render(
+    <FormComponent/>,
+    document.querySelector('#app')
+  )
+</script>
+
+</body>
+
+</html>

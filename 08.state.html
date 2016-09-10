@@ -1,0 +1,47 @@
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+<div id="app"></div>
+
+<script src="http://cdn.bootcss.com/react/15.3.1/react.js"></script>
+<script src="http://cdn.bootcss.com/react/15.3.1/react-dom.js"></script>
+<script src="http://cdn.bootcss.com/babel-standalone/6.15.0/babel.min.js"></script>
+
+<script type="text/babel">
+  const MoComponent = React.createClass({
+    getInitialState() {
+      return {
+        count: 0
+      }
+    },
+
+    mo () {
+      this.setState({ count: this.state.count + 1 })
+    },
+
+    render () {
+      return (
+        <div>
+          <h2>Mo: {this.state.count}s</h2>
+          <button onClick={this.mo}>+1s</button>
+        </div>
+      )
+    }
+  })
+
+  ReactDOM.render(
+    <div>
+      <MoComponent />
+      <MoComponent />
+    </div>,
+    document.querySelector('#app')
+  )
+</script>
+
+</body>
+
+</html>
