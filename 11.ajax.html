@@ -1,0 +1,73 @@
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+<div id="app"></div>
+
+<script src="http://cdn.bootcss.com/react/15.3.1/react.js"></script>
+<script src="http://cdn.bootcss.com/react/15.3.1/react-dom.js"></script>
+<script src="http://cdn.bootcss.com/babel-standalone/6.15.0/babel.min.js"></script>
+<script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script type="text/babel">
+  const apiUrl = function (area) {
+    return 'http://live.bilibili.com/index/refresh?area=' + area
+  }
+
+  const ListComponent = React.createClass({
+    getInitialState () {
+      return {
+        list: []
+      }
+    },
+
+    getListData () {
+      $.getJSON(apiUrl(this.props.area)).done(result => {
+        this.setState({ list: result.data.list })
+      })
+    },
+
+    componentDidMount () {
+      console.log('Component did mount.')
+      this.getListData()
+    },
+
+    componentWillUpdate (nextProp, nextState) {
+      console.log('Component will update.')
+      console.log('nextState', nextState)
+    },
+
+    componentDidUpdate () {
+      console.log('Component did update.')
+    },
+
+    render () {
+      return (
+        <div>
+          <h2>{this.props.title}</h2>
+          <ul>
+            {
+              this.state.list.map(item => <li>{item.title}</li>)
+            }
+          </ul>
+        </div>
+      )
+    }
+  })
+
+  ReactDOM.render(
+    <div>
+      <ListComponent title="萌宅推荐" area="subject"/>
+      <ListComponent title="绘画专区" area="draw"/>
+      <ListComponent title="放映厅" area="movie"/>
+    </div>,
+    document.querySelector('#app')
+  )
+</script>
+
+</body>
+
+</html>
